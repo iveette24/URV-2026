@@ -1,7 +1,7 @@
 /**
  * Classe per guardar dates.
  * 
- * @author Professorat de programació.
+ * @author Professorat de programació modificat per Ivette Margalló.
  *
  */
 
@@ -10,6 +10,8 @@ public class Data {
 	private int dia;
 	private int mes;
 	private int any;
+
+	private static int anyBase = 2000;
 
    /**
 	 * Constructor que rep la data per paràmetre
@@ -59,6 +61,27 @@ public class Data {
 	 */
 	public int getAny() {
 		return any;
+	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return any base
+	 */
+	public static int getAnyBase() { //És estàtic perquè no va lligat a cap istància concreta i l'atribut és estàtic.
+		return anyBase;
+	}
+
+
+	/**
+	 * Setter 
+	 * 
+     * @param anyBase setter del anyBase
+     */
+	public static void setAnyBase(int anyBase) { //Void pq no hi ha return.
+		//no podem usar els this pq no hi ha instància.
+		Data.anyBase = anyBase; 
+		
 	}
 
 	/**
@@ -207,4 +230,11 @@ public class Data {
 		return diesMes;
 	}
 
+	public boolean esAnteriorAnyBase () {
+		return any < anyBase;
+		//Retorna true si l'any és més petit que anyBase.
+	}
+
 }
+
+
