@@ -235,6 +235,11 @@ public class Data {
 		//Retorna true si l'any és més petit que anyBase.
 	}
 
+	public boolean esIgualAnyBase () {
+		return any == anyBase;
+		//Retorna true si l'any és igual que anyBase.
+	}
+
 }
 
 

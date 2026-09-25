@@ -9,6 +9,7 @@ public class App {
 		validacionsUnaData();
 		validacionsDuesDates();
 		validacioAnyBase();
+		validacioAnyBaseIgual();
 
 	}
 
@@ -72,4 +73,21 @@ public class App {
 		System.out.println("\tMirem si la data Examen és anterior al AnyBase: \n\t  " + dataExamen.esAnteriorAnyBase());
 	}
 
+	private static void validacioAnyBaseIgual() {
+		System.out.println("\nValidació si l'any és igual que anybase.");
+		System.out.println("\tAquest és l'any base: " + Data.getAnyBase());
+		Data.setAnyBase(2026);
+		System.out.println("\tSetegem l'any base " + Data.getAnyBase());
+		System.out.println("\tLa data del examen és: " + dataExamen);
+		System.out.println("\tMirem si la data Examen és anterior al AnyBase: \n\t  " + dataExamen.esIgualAnyBase());
+	}
+
+
+
+
+
+
+
+
+	
 }
