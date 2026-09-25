@@ -5,26 +5,34 @@
  *
  */
 
+
 public class Data {
 	private int dia;
 	private int mes;
 	private int any;
 
-	/**
+   /**
 	 * Constructor que rep la data per paràmetre
-	 * No valida que la data sigui correcta.
-	 * 
+	 * Ha de validar que la data és correcta. Si rep una data incorrecta inicialitza la instància
+	 * amb la data de referència.
 	 * @param dia
 	 * @param mes
 	 * @param any
 	 */
-	public Data(int dia, int mes, int any) {
-		this.dia = dia;
-		this.mes = mes;
-		this.any = any;
-	}
+    public Data(int dia, int mes, int any) {
+        if (esDataCorrecta(dia, mes, any)) { // ens asegurem que és una data valida
+			this.dia = dia;
+			this.mes = mes;
+			this.any = any;
+		} else { // posem la data de referència com a senyal d'error
+			this.dia = 1;
+			this.mes = 1;
+			this.any = 2000;
+		}
+    }
 
-	// METODES QUE HAN DE FER ELS ALUMNES AL LAB DE FORMA GUIADA
+
+	// METODES
 
 	/**
 	 * Getter
@@ -104,7 +112,6 @@ public class Data {
 			return false;
 	}
 
-	// METODES QUE HAN DE FER ELS ALUMNES A CASA PER LLIURAR AL TALLER
 
 	/**
 	 * Mètode per comprova si la data actual és anterior a la passada per paràmetre
@@ -158,6 +165,46 @@ public class Data {
 			}
 		}
 		return ultim;
+	}
+
+
+
+// Mètodes STATIC addicionals ********************************************************************************
+	/// 
+    // Mètodes de classe, no d'objecte
+	// no s'apliquen sobre el contingut d'una instància de data sinó sobre valors que es reben per paràmetre.
+	// són mètodes auxiliars i per això estan definits com a private dins la classe
+	// no són accessibles des de la classe Aplicacio (App.java)
+
+	private static boolean esDataCorrecta(int dia, int mes, int any) {
+		boolean hoEs=true;
+		if (dia < 1 || dia > 31) { // dia incorrecte
+			hoEs= false;
+		}
+		else if (mes < 1 || mes > 12) { // mes incorrecte
+			hoEs= false;
+		}
+		else if (dia > diesMes(mes, any)) { // dia del mes incorrecte
+			hoEs= false;
+		}
+		return hoEs;
+	}
+	private static int diesMes(int mes, int any) { // per saber quants dies te un mes d'un any
+		int diesMes;
+		if (mes == 2) {
+			if ((any % 4 == 0) && ((any % 100 != 0) || (any % 400 == 0))) {
+				diesMes = 29;
+			} else {
+				diesMes = 28;
+			}
+		} else {
+			if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+				diesMes = 30;
+			} else {
+				diesMes = 31;
+			}
+		}
+		return diesMes;
 	}
 
 }
