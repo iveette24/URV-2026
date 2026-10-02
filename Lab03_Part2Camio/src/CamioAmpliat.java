@@ -1,8 +1,11 @@
 /**
- * Pràctica 1 - Curs 2026-27: Primera part
- * Classe Camio
+ * Curs 2026-27: Segona part
+ * Classe CamioAmpliat
+ * Per a diferenciar-la de la classe treballada a la primera part
  */
-public class Camio {
+
+
+public class CamioAmpliat {
 	
     // CONSTANTS
 	private static final int MAX_PAQUETS = 100;
@@ -23,7 +26,7 @@ public class Camio {
 	 * @param capacitatCamio - kilograms que admet el camió. 
 	 * Inicialment el camió està buit.
 	 */
-	public Camio (int capacitatCamio) {
+	public CamioAmpliat (int capacitatCamio) {
 		kgActuals = 0;
 		paquetsActuals = 0;
 		kgMaxims = capacitatCamio;
@@ -35,7 +38,7 @@ public class Camio {
 	 * @param paquetsActuals - nombre de paquets que conté el camió inicialment
 	 * @param kgActuals - kilograms que porta el camió inicialment
 	 */
-	public Camio (int capacitatCamio, int paquetsActuals, int kgActuals) {
+	public CamioAmpliat (int capacitatCamio, int paquetsActuals, int kgActuals) {
 		if ((kgActuals <= capacitatCamio) && (paquetsActuals < MAX_PAQUETS)) { // Comprovo que hi caben els kg actuals i els paquets
 			this.kgActuals = kgActuals;
 			this.paquetsActuals = paquetsActuals;
@@ -120,7 +123,7 @@ public class Camio {
 	 * @param altreCamio - altra instància amb la que es compara l'actual
 	 * @return cert si tot el contingut és el mateix
 	 */   
-	public boolean equals (Camio altreCamio) {
+	public boolean equals (CamioAmpliat altreCamio) {
 		return ((this.kgMaxims == altreCamio.kgMaxims) && (this.kgActuals == altreCamio.kgActuals));
 	}
 
@@ -152,7 +155,7 @@ public class Camio {
 	 * @param altreCamio - camió a comparar
 	 * @return cert si aquest camió té més espai lliure, fals en cas contrari
 	 */
-	public boolean teMesEspaiLliureQue(Camio altreCamio) {		
+	public boolean teMesEspaiLliureQue(CamioAmpliat altreCamio) {		
 		return (espaiLliure() > altreCamio.espaiLliure());
 	}
 	
