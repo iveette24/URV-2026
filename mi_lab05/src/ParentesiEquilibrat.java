@@ -31,7 +31,8 @@ public class ParentesiEquilibrat {
 			}
 			i++;
 		}
-
+		
+		//Creo que equilibrat se ponia para verificar, despues de todo el while como sale la variable 
         if (equilibrat) {
             if (pila.pilaBuida()) {
                 System.out.println("La frase està correctament equilibrada.");
@@ -43,7 +44,7 @@ public class ParentesiEquilibrat {
         teclat.close();
     }
 
-    // Métodos auxiliares: SOLO contienen return, ningún print
+    // Métodos auxiliares de verificacion de los caracteres 
     public static boolean esParentesiObrir(char c) {
         return ((c == '(') || (c == '{') || (c == '['));
     }
