@@ -3,24 +3,58 @@ import java.util.Scanner;
 public class ParentesiEquilibrat {
 
 	public static void main(String[] args) {
-		Scanner teclat=new Scanner(System.in);
+		Scanner teclat = new Scanner(System.in);
+		System.out.println ("Introdueix la frase a comprovar: ");
+		String frase = teclat.nextLine(); //Aquí es llegeix la frase a comprovar
 
-		// TODO: Completa el codi aquí
+		PilaCaracters pila = new PilaCaracters(frase.length()); //No entiendo esto 
+		boolean equilibrat = true; //NO entiendo que significa esta variable 
+		int i = 0;
 
-		teclat.close();
-	}
+		while (i < frase.length() && equilibrat) {
+			char c = frase.charAt(i); //obtenemos el caracter situado en la posición i de la frase
 
-	public static boolean esParentesiObrir(char c) {
-		return ((c=='(')||(c=='{')||(c=='['));
-	}
-	
-	public static boolean esParentesiTancar(char c) {
-		return ((c==')')||(c=='}')||(c==']'));
-	}
-	
-	public static boolean sonParella(char obrir, char tancar) {
-		return ((obrir=='(')&&(tancar==')') || 
-				((obrir=='{')&&(tancar=='}')) || 
-				((obrir=='[')&&(tancar==']')));
-	}
+			if (esParentesiObrir(c)) {
+				pila.apilar(c);
+			} else if (esParentesiTancar(c)) {
+				if (pila.pilaBuida()) {
+					equilibrat = false; //per a que volem la variable si fem un print ?
+					System.out.println("Error a la posició " + i + ": es tanca '" + c + "' sense haver-ne obert cap.");
+				} else {
+					char ultimObrir = pila.desapilar();
+					if (!sonParella(ultimObrir, c)) {
+						equilibrat = false;
+						System.out.println("Error a la posició " + i + ": no coincideixen '" + ultimObrir + "' i '" + c + "'.");
+
+					}
+				}
+			}
+			i++;
+		}
+
+        if (equilibrat) {
+            if (pila.pilaBuida()) {
+                System.out.println("La frase està correctament equilibrada.");
+            } else {
+                System.out.println("Error: falten parèntesis de tancar al final.");
+            }
+        }
+
+        teclat.close();
+    }
+
+    // Métodos auxiliares: SOLO contienen return, ningún print
+    public static boolean esParentesiObrir(char c) {
+        return ((c == '(') || (c == '{') || (c == '['));
+    }
+
+    public static boolean esParentesiTancar(char c) {
+        return ((c == ')') || (c == '}') || (c == ']'));
+    }
+
+    public static boolean sonParella(char obrir, char tancar) {
+        return ((obrir == '(') && (tancar == ')')) ||
+               ((obrir == '{') && (tancar == '}')) ||
+               ((obrir == '[') && (tancar == ']'));
+    }
 }
